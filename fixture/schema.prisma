@@ -1,0 +1,380 @@
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// GLOBAL
+
+model Node {
+  id           String           @id @default(uuid())
+  //
+  user         User?
+  client       Client?
+  candidate    Candidate?
+  application  Application?
+  job          Job?
+  tag          Tag?
+  comment      Comment?
+  source       Source?
+  pipeline     Pipeline?
+  stage        Stage?
+  location     Location?
+  review       Review?
+  event        Event?
+  appointment  Appointment?
+  notification Notification?
+  field        FieldDefinition?
+  workspace    Workspace?
+  test         Test?
+}
+
+model Workspace {
+  id           String            @id
+  node         Node              @relation(fields: [id], references: [id])
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  deletedAt    DateTime?
+  //
+  name         String
+  description  String?
+  website      String?
+  type         WorkspaceType     @default(FREE)
+  //
+  users        User[]
+  clients      Client[]
+  candidates   Candidate[]
+  applications Application[]
+  jobs         Job[]
+  tags         Tag[]
+  sources      Source[]
+  comments     Comment[]
+  pipelines    Pipeline[]
+  stages       Stage[]
+  locations    Location[]
+  reviews      Review[]
+  event        Event[]
+  appointment  Appointment[]
+  notification Notification[]
+  fields       FieldDefinition[]
+}
+
+enum WorkspaceType {
+  FREE
+}
+
+model User {
+  id           String        @id
+  node         Node          @relation(fields: [id], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+  //
+  email        String        @unique
+  avatarUrl    String?
+  //
+  workspaces   Workspace[]
+  comments     Comment[]
+  reviews      Review[]
+  appointments Appointment[]
+}
+
+// TENANT
+
+model Pipeline {
+  id        String    @id
+  wid       String
+  node      Node      @relation(fields: [id], references: [id])
+  workspace Workspace @relation(fields: [wid], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  //
+  stages    Stage[]
+}
+
+model Stage {
+  id           String        @id
+  wid          String
+  node         Node          @relation(fields: [id], references: [id])
+  workspace    Workspace     @relation(fields: [wid], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+  //
+  pipeline     Pipeline      @relation(fields: [pipelineId], references: [id])
+  pipelineId   String
+  applications Application[]
+  reviews      Review[]
+
+}
+
+enum StageType {
+  INITIAL
+  PROCESS
+  REJECT
+  SUCCESS
+}
+
+model Review {
+  id            String      @id
+  node          Node        @relation(fields: [id], references: [id])
+  wid           String
+  workspace     Workspace   @relation(fields: [wid], references: [id])
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  deletedAt     DateTime?
+  //
+  message       String?
+  score         Int?
+  //
+  author        User        @relation(fields: [authorId], references: [id])
+  authorId      String
+  application   Application @relation(fields: [applicationId], references: [id])
+  applicationId String
+  stage         Stage?      @relation(fields: [stageId], references: [id])
+  stageId       String?
+
+
+}
+
+model Client {
+  id          String    @id
+  node        Node      @relation(fields: [id], references: [id])
+  wid         String
+  workspace   Workspace @relation(fields: [wid], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  //
+  name        String
+  description String?
+  //
+  jobs        Job[]
+}
+
+model Candidate {
+  id           String        @id
+  node         Node          @relation(fields: [id], references: [id])
+  wid          String
+  workspace    Workspace     @relation(fields: [wid], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+  //
+  firstName    String?
+  lastName     String?
+  headline     String?
+  emails       String[]
+  links        String[]
+  phones       String[]
+  //
+  tags         Tag[]
+  applications Application[]
+  fields       FieldValue[]
+}
+
+model FieldDefinition {
+  id          String       @id
+  node        Node         @relation(fields: [id], references: [id])
+  wid         String
+  workspace   Workspace    @relation(fields: [wid], references: [id])
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  deletedAt   DateTime?
+  //
+  name        String
+  description String?
+  //
+  type        FieldType
+  values      FieldValue[]
+}
+
+model FieldValue {
+  value        Json
+  //
+  definition   FieldDefinition @relation(fields: [definitionId], references: [id])
+  definitionId String
+  candidate    Candidate       @relation(fields: [candidateId], references: [id])
+  candidateId  String
+
+  @@unique([definitionId, candidateId])
+}
+
+enum FieldType {
+  TEXT
+  TEXTAREA
+  NUMBER
+  SCORE
+  BOOLEAN
+}
+
+model Application {
+  id          String    @id
+  node        Node      @relation(fields: [id], references: [id])
+  wid         String
+  workspace   Workspace @relation(fields: [wid], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  //
+  job         Job       @relation(fields: [jobId], references: [id])
+  jobId       String
+  candidate   Candidate @relation(fields: [candidateId], references: [id])
+  candidateId String
+  source      Source    @relation(fields: [sourceId], references: [id])
+  sourceId    String
+  stage       Stage     @relation(fields: [stageId], references: [id])
+  stageId     String
+  reviews     Review[]
+}
+
+model Job {
+  id           String        @id
+  node         Node          @relation(fields: [id], references: [id])
+  wid          String
+  workspace    Workspace     @relation(fields: [wid], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+  //
+  name         String
+  description  String?
+  status       JobStatus
+  //
+  client       Client        @relation(fields: [clientId], references: [id])
+  clientId     String
+  applications Application[]
+  locations    Location[]
+}
+
+enum JobStatus {
+  DRAFT
+  OPEN
+  CLOSED
+}
+
+model Location {
+  id          String    @id
+  node        Node      @relation(fields: [id], references: [id])
+  wid         String
+  workspace   Workspace @relation(fields: [wid], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  //
+  name        String?
+  description String?
+  /// ISO 3166-2
+  country     String
+  city        String?
+  //
+  jobs        Job[]
+}
+
+model Tag {
+  id          String      @id
+  wid         String
+  node        Node        @relation(fields: [id], references: [id])
+  workspace   Workspace   @relation(fields: [wid], references: [id])
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+  //
+  name        String
+  description String?
+  //
+  types       TagType[]
+  candidates  Candidate[]
+
+  @@index([wid])
+}
+
+enum TagType {
+  CANDIDATE
+  APPLICATION
+  JOB
+}
+
+model Source {
+  id           String        @id
+  wid          String
+  node         Node          @relation(fields: [id], references: [id])
+  workspace    Workspace     @relation(fields: [wid], references: [id])
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+  //
+  name         String
+  description  String?
+  //
+  applications Application[]
+}
+
+model Comment {
+  id        String    @id
+  wid       String
+  node      Node      @relation(fields: [id], references: [id])
+  workspace Workspace @relation(fields: [wid], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  //
+  message   String
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  String
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  parentId  String?
+  replies   Comment[] @relation("CommentReplies")
+}
+
+model Appointment {
+  id          String    @id
+  node        Node      @relation(fields: [id], references: [id])
+  wid         String
+  workspace   Workspace @relation(fields: [wid], references: [id])
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  //
+  name        String
+  description String?
+  //
+  owner       User      @relation(fields: [ownerId], references: [id])
+  ownerId     String
+
+}
+
+model Event {
+  id        String    @id
+  wid       String
+  node      Node      @relation(fields: [id], references: [id])
+  workspace Workspace @relation(fields: [wid], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Notification {
+  id        String    @id
+  node      Node      @relation(fields: [id], references: [id])
+  wid       String
+  workspace Workspace @relation(fields: [wid], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  //
+}
+
+model Test {
+  id        String    @id
+  node      Node      @relation(fields: [id], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  value String?
+}

@@ -1,0 +1,7 @@
+{
+  "extends": ["@vadistic/eslint-config", "@vadistic/eslint-config/prettier"],
+
+  "rules": {
+    "no-underscore-dangle": "off"
+  }
+}

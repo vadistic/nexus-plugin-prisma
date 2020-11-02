@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es2018",
+    "lib": ["esnext"],
+
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "incremental": true,
+
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true
+  },
+  "include": ["src", "test"],
+  "exclude": ["dist", "fixture"]
+}

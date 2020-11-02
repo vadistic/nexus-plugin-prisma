@@ -1,0 +1,545 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugin print force schema: schema.graphql 1`] = `
+"type Tag {
+  id: String!
+}
+
+\\"\\"\\"\\"\\"\\"
+scalar Json
+
+\\"\\"\\"\\"\\"\\"
+scalar DateTime
+
+input JsonNullableFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Json
+
+  \\"\\"\\"\\"\\"\\"
+  not: Json
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Json]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Json]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input JsonFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Json
+
+  \\"\\"\\"\\"\\"\\"
+  not: Json
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Json]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Json]
+}
+
+input StringNullableFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: String
+
+  \\"\\"\\"\\"\\"\\"
+  not: String
+
+  \\"\\"\\"\\"\\"\\"
+  startsWith: String
+
+  \\"\\"\\"\\"\\"\\"
+  endsWith: String
+
+  \\"\\"\\"\\"\\"\\"
+  contains: String
+
+  \\"\\"\\"\\"\\"\\"
+  in: [String]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [String]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input StringFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: String
+
+  \\"\\"\\"\\"\\"\\"
+  not: String
+
+  \\"\\"\\"\\"\\"\\"
+  startsWith: String
+
+  \\"\\"\\"\\"\\"\\"
+  endsWith: String
+
+  \\"\\"\\"\\"\\"\\"
+  contains: String
+
+  \\"\\"\\"\\"\\"\\"
+  in: [String]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [String]
+}
+
+input IntNullableFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Int
+
+  \\"\\"\\"\\"\\"\\"
+  not: Int
+
+  \\"\\"\\"\\"\\"\\"
+  lt: Int
+
+  \\"\\"\\"\\"\\"\\"
+  lte: Int
+
+  \\"\\"\\"\\"\\"\\"
+  gt: Int
+
+  \\"\\"\\"\\"\\"\\"
+  gte: Int
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Int]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Int]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input IntFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Int
+
+  \\"\\"\\"\\"\\"\\"
+  not: Int
+
+  \\"\\"\\"\\"\\"\\"
+  lt: Int
+
+  \\"\\"\\"\\"\\"\\"
+  lte: Int
+
+  \\"\\"\\"\\"\\"\\"
+  gt: Int
+
+  \\"\\"\\"\\"\\"\\"
+  gte: Int
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Int]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Int]
+}
+
+input FloatNullableFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Float
+
+  \\"\\"\\"\\"\\"\\"
+  not: Float
+
+  \\"\\"\\"\\"\\"\\"
+  lt: Float
+
+  \\"\\"\\"\\"\\"\\"
+  lte: Float
+
+  \\"\\"\\"\\"\\"\\"
+  gt: Float
+
+  \\"\\"\\"\\"\\"\\"
+  gte: Float
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Float]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Float]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input FloatFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Float
+
+  \\"\\"\\"\\"\\"\\"
+  not: Float
+
+  \\"\\"\\"\\"\\"\\"
+  lt: Float
+
+  \\"\\"\\"\\"\\"\\"
+  lte: Float
+
+  \\"\\"\\"\\"\\"\\"
+  gt: Float
+
+  \\"\\"\\"\\"\\"\\"
+  gte: Float
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Float]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Float]
+}
+
+input DateTimeNullableFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  not: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  lt: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  lte: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  gt: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  gte: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  in: [DateTime]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [DateTime]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input DateTimeFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  not: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  lt: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  lte: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  gt: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  gte: DateTime
+
+  \\"\\"\\"\\"\\"\\"
+  in: [DateTime]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [DateTime]
+}
+
+input BooleanNullableFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Boolean
+
+  \\"\\"\\"\\"\\"\\"
+  not: Boolean
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Boolean]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Boolean]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input BooleanFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: Boolean
+
+  \\"\\"\\"\\"\\"\\"
+  not: Boolean
+
+  \\"\\"\\"\\"\\"\\"
+  in: [Boolean]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [Boolean]
+}
+
+input IDNullableFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: ID
+
+  \\"\\"\\"\\"\\"\\"
+  not: ID
+
+  \\"\\"\\"\\"\\"\\"
+  in: [ID]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [ID]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input IDFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: ID
+
+  \\"\\"\\"\\"\\"\\"
+  not: ID
+
+  \\"\\"\\"\\"\\"\\"
+  in: [ID]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [ID]
+}
+
+enum SortDirection {
+  ASC
+  DESC
+}
+
+enum WorkspaceType {
+  FREE
+}
+
+enum StageType {
+  INITIAL
+  PROCESS
+  REJECT
+  SUCCESS
+}
+
+enum FieldType {
+  TEXT
+  TEXTAREA
+  NUMBER
+  SCORE
+  BOOLEAN
+}
+
+enum JobStatus {
+  DRAFT
+  OPEN
+  CLOSED
+}
+
+enum TagType {
+  CANDIDATE
+  APPLICATION
+  JOB
+}
+
+input WorkspaceTypeNullableEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: WorkspaceType
+
+  \\"\\"\\"\\"\\"\\"
+  not: WorkspaceType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [WorkspaceType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [WorkspaceType]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input WorkspaceTypeEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: WorkspaceType
+
+  \\"\\"\\"\\"\\"\\"
+  not: WorkspaceType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [WorkspaceType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [WorkspaceType]
+}
+
+input StageTypeNullableEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: StageType
+
+  \\"\\"\\"\\"\\"\\"
+  not: StageType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [StageType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [StageType]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input StageTypeEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: StageType
+
+  \\"\\"\\"\\"\\"\\"
+  not: StageType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [StageType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [StageType]
+}
+
+input FieldTypeNullableEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: FieldType
+
+  \\"\\"\\"\\"\\"\\"
+  not: FieldType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [FieldType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [FieldType]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input FieldTypeEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: FieldType
+
+  \\"\\"\\"\\"\\"\\"
+  not: FieldType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [FieldType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [FieldType]
+}
+
+input JobStatusNullableEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: JobStatus
+
+  \\"\\"\\"\\"\\"\\"
+  not: JobStatus
+
+  \\"\\"\\"\\"\\"\\"
+  in: [JobStatus]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [JobStatus]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input JobStatusEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: JobStatus
+
+  \\"\\"\\"\\"\\"\\"
+  not: JobStatus
+
+  \\"\\"\\"\\"\\"\\"
+  in: [JobStatus]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [JobStatus]
+}
+
+input TagTypeNullableEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: TagType
+
+  \\"\\"\\"\\"\\"\\"
+  not: TagType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [TagType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [TagType]
+
+  \\"\\"\\"\\"\\"\\"
+  exists: Boolean
+}
+
+input TagTypeEnumFilter {
+  \\"\\"\\"\\"\\"\\"
+  equals: TagType
+
+  \\"\\"\\"\\"\\"\\"
+  not: TagType
+
+  \\"\\"\\"\\"\\"\\"
+  in: [TagType]
+
+  \\"\\"\\"\\"\\"\\"
+  notInt: [TagType]
+}
+
+input TagWhere {
+  \\"\\"\\"Filter by Tag's id\\"\\"\\"
+  id: StringFilter
+
+  \\"\\"\\"\\"\\"\\"
+  AND: [TagWhere]
+
+  \\"\\"\\"\\"\\"\\"
+  OR: [TagWhere]
+
+  \\"\\"\\"\\"\\"\\"
+  NOT: TagWhere
+}
+
+input TagFilter {
+  \\"\\"\\"\\"\\"\\"
+  every: TagWhere
+
+  \\"\\"\\"\\"\\"\\"
+  none: TagWhere
+
+  \\"\\"\\"\\"\\"\\"
+  some: TagWhere
+}
+
+input TagOrderBy {
+  id: SortDirection
+}
+
+type Query {
+  ok: Boolean!
+}
+"
+`;
